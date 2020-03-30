@@ -30,7 +30,7 @@ window.onload = function() {
         labels: labels,
         datasets: [{
             //lineTension: 0,
-            //pointRadius: 1,
+            //pointRadius: 3,
             label: 'the number of the infected',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
