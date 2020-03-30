@@ -25,29 +25,24 @@ let labels = Array.from({length: end/update_interval}, (v, k) => k);
 window.onload = function() {
   var ctx = document.getElementById("myLineChart");
   myLineChart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
- 
-    // The data for our dataset
+    type: 'bar',
     data: {
         labels: labels,
         datasets: [{
-            lineTension: 0,
-            pointRadius: 1,
+            //lineTension: 0,
+            //pointRadius: 1,
             label: 'the number of the infected',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
             data: infected,
         }]
     },
- 
-    // Configuration options go here
     options: {
       scales: {
         yAxes: [{
             display: true,
             ticks: {
-                beginAtZero: true,   // minimum value will be 0.
+                //beginAtZero: true,
                 max : N,
             }
         }]
