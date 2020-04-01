@@ -15,12 +15,12 @@ let r = 0.15;
 let normal = [N-1];
 let t = 0;
 let end = 4000;
-var myLineChart;
+let myLineChart;
 let update_interval = 100;
-var infected = Array(end/update_interval).fill(0);
+let infected = Array(end/update_interval).fill(0);
 let infected_num = 1;
 let labels = Array.from({length: end/update_interval}, (v, k) => k);
-
+let v_max = 3;
 
 window.onload = function() {
   var ctx = document.getElementById("myLineChart");
@@ -46,21 +46,31 @@ window.onload = function() {
                 max : N,
             }
         }]
-    }
+      },
+      responsive: false
     }
   });
-  
+  var btn = document.getElementById('btn');
+  var input = document.getElementById('velocity')
+ 
+  btn.addEventListener('click', function() {
+    
+    v_max = input.value;
+    reset();
+
+  }, false);
 };
 status[0] = 1;
 
 function setup() {
-  createCanvas(H, W);
+  let canvas = createCanvas(H, W);
+  canvas.parent("canvas");
   stroke(0);
   for(let i = 0; i<N; i++){
-    X[i] = random(0, 400);
-    Y[i] = random(0, 400);
-    Vx[i] = random(0, 3);
-    Vy[i] = random(0, 3);
+    X[i] = random(0, H);
+    Y[i] = random(0, W);
+    Vx[i] = random(0, v_max);
+    Vy[i] = random(0, v_max);
   }
 }
 
@@ -75,10 +85,12 @@ function draw() {
   for(let i = 0; i<N; i++){
     if(status[i] == 0) fill(255);
     else if(status[i] == -1) fill(0, 100, 0, 80);
-    else fill(0);
+    else fill(100, 0, 0, 80);
     ellipse(X[i], Y[i], eps);
   }
   move();
+  fill(0, 0, 0, 0);
+  rect(0, 0, H, W);
 }
 
 function move(){
@@ -134,4 +146,18 @@ function prob(x){
 function updateChart(){
     myLineChart.data.datasets[0].data[t/update_interval] = infected_num;
     myLineChart.update();
+}
+
+function reset(){
+  t = 0;
+  for(let i = 0; i<N; i++){
+    X[i] = random(0, H);
+    Y[i] = random(0, W);
+    Vx[i] = random(0, v_max);
+    Vy[i] = random(0, v_max);
+  }
+  status.fill(0);
+  status[0] = 1;
+  infected_num = 1;
+  myLineChart.data.datasets[0].data.fill(0);
 }

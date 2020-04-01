@@ -3,14 +3,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.bundle.min.js"></script>
-  <style> body { padding: 0; margin: 0; } </style>
-  <title>Simulation for epidemic</title>
-</head>
-<body>
-  <h1>graph for infected</h1>
-  <canvas id="myLineChart"></canvas>
-  <h1>simulation</h1>
+  <link rel="stylesheet" href="static/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <script language="javascript" type="text/javascript" src="static/libraries/p5.min.js"></script>
   <script language="javascript" type="text/javascript" src="static/p5js-sketch.js"></script>
+  <title>Epidemic Simulation</title>
+</head>
+<body>
+  <div><canvas id="myLineChart" width="400" height="400"></canvas></div>
+  <div id="canvas"></div>
+
+  <form class="col s12">
+    <div class="row">
+      <div class="col s1">
+      </div>
+      <div class="input-field col s4">
+        <input id="velocity" type="text" class="validate">
+        <label for="velocity">velocity</label>
+      </div>
+      <div class="col s4">
+        <a class="btn-floating btn-large waves-effect waves-light green" id="btn">reset</a>
+      </div>
+    </div>
+  </form>
+</div>
 </body>
 </html>
